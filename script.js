@@ -33,11 +33,11 @@ $(document).ready(function() {
             generateTable(inputData);
         }
     });
+    
+    function generateTable(data) {
+        console.log("Generating table with input data...");
+        var html = '<table border="1"><tr><td>Entered Data</td><td>' + data + '</td></tr></table>';
+        $('#dataTable').html(html);
+        console.log("Table generated successfully and added to the page.");
+    }
 });
-
-function generateTable(data) {
-    console.log("Generating table with input data...");
-    var html = '<table border="1"><tr><td>Entered Data</td><td>' + data + '</td></tr></table>';
-    $('#dataTable').html(html);
-    console.log("Table generated successfully and added to the page.");
-}
