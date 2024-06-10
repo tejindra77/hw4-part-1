@@ -4,10 +4,16 @@ body {
     margin: 20px;
 }
 
-label {
-    margin-right: 10px;
+label, input, button {
+    margin: 10px;
 }
 
-input {
-    margin-right: 10px;
+table {
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
 }

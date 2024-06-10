@@ -6,30 +6,30 @@
  */
 
 $(document).ready(function() {
-    console.log("Document is ready.");
-
     $("#dataForm").validate({
         rules: {
-            dataInput: "required"
+            dataInput: {
+                required: true,
+                minlength: 2  // Assuming at least 2 characters are needed
+            }
         },
         messages: {
-            dataInput: "Please enter data to generate the table. This field cannot be empty."
+            dataInput: {
+                required: "Please enter some data to generate the table.",
+                minlength: "Your input must be at least 2 characters."
+            }
         },
         errorPlacement: function(error, element) {
-            error.insertAfter(element); // Custom placement of error messages
+            error.insertAfter(element); // Place error messages right after the input element
         },
         submitHandler: function(form, event) {
-            event.preventDefault();
-            console.log("Form is valid and being processed.");
-            generateTable();
+            event.preventDefault(); // Prevent default form submission
+            generateTable($('#dataInput').val());
         }
     });
 
-    function generateTable() {
-        var input = $('#dataInput').val();
-        console.log("Generating table with input:", input);
-        var html = '<table border="1"><tr><td>' + input + '</td></tr></table>';
+    function generateTable(data) {
+        var html = '<table border="1"><tr><td>Data:</td><td>' + data + '</td></tr></table>';
         $('#dataTable').html(html);
-        console.log("Table generated.");
     }
 });
