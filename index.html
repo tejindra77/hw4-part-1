@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Table with jQuery Validation</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!--
+    Author: Tejindra Khatri
+    Date: June 10, 2024
+    Description: This HTML page is designed to use the jQuery Validation plugin to enhance form validation.
+                 It includes client-side validation to provide immediate feedback on user errors, guiding users to correct them efficiently.
+                 The form data, upon validation, is used to dynamically generate a table without reloading the page.
+    -->
+</head>
+<body>
+    <form id="dataForm">
+        <label for="dataInput">Enter Data:</label>
+        <input type="text" id="dataInput" name="dataInput" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="dataTable">
+        <!-- Dynamic table will be generated here -->
+    </div>
+</body>
+</html>
