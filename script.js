@@ -26,9 +26,10 @@ $(document).ready(function() {
             console.log("Error message placed after input field.");
         },
         submitHandler: function(form) {
-            console.log("Form is valid and being processed.");
+            console.log("Submit handler triggered.");
+            event.preventDefault();  // This is crucial
             const inputData = $('#dataInput').val();
-            console.log("Received valid input: " + inputData);
+            console.log("Form is valid and being processed. Received valid input: " + inputData);
             generateTable(inputData);
             return false; // Prevent form submission
         }
@@ -37,6 +38,7 @@ $(document).ready(function() {
     function generateTable(data) {
         console.log("Generating table with input data...");
         var html = '<table border="1"><tr><td>Entered Data</td><td>' + data + '</td></tr></table>';
+        console.log("Generated HTML: " + html);
         $('#dataTable').html(html);
         console.log("Table generated successfully and added to the page.");
     }
