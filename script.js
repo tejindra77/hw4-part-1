@@ -6,11 +6,13 @@
  */
 
 $(document).ready(function() {
+    console.log("Document is ready, and script is loading...");
+
     $("#dataForm").validate({
         rules: {
             dataInput: {
                 required: true,
-                minlength: 2  // Assuming at least 2 characters are needed
+                minlength: 2
             }
         },
         messages: {
@@ -20,16 +22,22 @@ $(document).ready(function() {
             }
         },
         errorPlacement: function(error, element) {
-            error.insertAfter(element); // Place error messages right after the input element
+            error.insertAfter(element);
+            console.log("Error message placed after input field.");
         },
         submitHandler: function(form, event) {
-            event.preventDefault(); // Prevent default form submission
-            generateTable($('#dataInput').val());
+            event.preventDefault();
+            console.log("Form is valid and being processed.");
+            const inputData = $('#dataInput').val();
+            console.log("Received valid input: " + inputData);
+            generateTable(inputData);
         }
     });
-
-    function generateTable(data) {
-        var html = '<table border="1"><tr><td>Data:</td><td>' + data + '</td></tr></table>';
-        $('#dataTable').html(html);
-    }
 });
+
+function generateTable(data) {
+    console.log("Generating table with input data...");
+    var html = '<table border="1"><tr><td>Entered Data</td><td>' + data + '</td></tr></table>';
+    $('#dataTable').html(html);
+    console.log("Table generated successfully and added to the page.");
+}
