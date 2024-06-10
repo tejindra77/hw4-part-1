@@ -25,15 +25,15 @@ $(document).ready(function() {
             error.insertAfter(element);
             console.log("Error message placed after input field.");
         },
-        submitHandler: function(form, event) {
-            event.preventDefault();
+        submitHandler: function(form) {
             console.log("Form is valid and being processed.");
             const inputData = $('#dataInput').val();
             console.log("Received valid input: " + inputData);
             generateTable(inputData);
+            return false; // Prevent form submission
         }
     });
-    
+
     function generateTable(data) {
         console.log("Generating table with input data...");
         var html = '<table border="1"><tr><td>Entered Data</td><td>' + data + '</td></tr></table>';
