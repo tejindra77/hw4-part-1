@@ -2,31 +2,34 @@
  * script.js
  * Author: Tejindra Khatri
  * Date: June 10, 2024
- * Description: This script uses the jQuery Validation plugin to validate user input on a dynamic form.
- * It provides immediate feedback with detailed error messages and prevents form submission if validation fails.
+ * Description: This script manages form validation using the jQuery Validation plugin and dynamically generates a table based on user input. Console logs are used for debugging purposes.
  */
 
 $(document).ready(function() {
+    console.log("Document is ready.");
+
     $("#dataForm").validate({
         rules: {
             dataInput: "required"
         },
         messages: {
-            dataInput: {
-                required: "Please enter data to generate the table. This field cannot be empty."
-            }
+            dataInput: "Please enter data to generate the table. This field cannot be empty."
         },
         errorPlacement: function(error, element) {
-            error.insertAfter(element); // Place error messages right after the input element
+            error.insertAfter(element); // Custom placement of error messages
         },
-        submitHandler: function(form) {
+        submitHandler: function(form, event) {
+            event.preventDefault();
+            console.log("Form is valid and being processed.");
             generateTable();
-            return false; // Prevent default form submission
         }
     });
 
     function generateTable() {
         var input = $('#dataInput').val();
-        $('#dataTable').html('<table><tr><td>' + input + '</td></tr></table>'); // Simple table generation for demonstration
+        console.log("Generating table with input:", input);
+        var html = '<table border="1"><tr><td>' + input + '</td></tr></table>';
+        $('#dataTable').html(html);
+        console.log("Table generated.");
     }
 });

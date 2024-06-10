@@ -1,0 +1,13 @@
+/* styles.css - This stylesheet provides basic styling for form elements on the page. */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+input {
+    margin-right: 10px;
+}
