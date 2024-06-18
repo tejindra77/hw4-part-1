@@ -10,21 +10,31 @@ Description: This HTML page is designed to use the jQuery Validation plugin to e
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dynamic Form Validation and Table Generation</title>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
-    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
-    <form id="dataForm">
-        <label for="dataInput">Enter Data:</label>
-        <input type="text" id="dataInput" name="dataInput" required>
-        <button type="submit">Submit</button>
-    </form>
-    <div id="dataTable">
-        <!-- Dynamic table will be generated here -->
+    <div class="container">
+        <h1>Multiplication Table Generator</h1>
+        <form id="multiplicationForm">
+            <label for="startHorizontal">Starting Number (Horizontal):</label>
+            <input type="number" id="startHorizontal" name="startHorizontal" min="-50" max="50" required>
+            <label for="endHorizontal">Ending Number (Horizontal):</label>
+            <input type="number" id="endHorizontal" name="endHorizontal" min="-50" max="50" required>
+            <br>
+            <label for="startVertical">Starting Number (Vertical):</label>
+            <input type="number" id="startVertical" name="startVertical" min="-50" max="50" required>
+            <label for="endVertical">Ending Number (Vertical):</label>
+            <input type="number" id="endVertical" name="endVertical" min="-50" max="50" required>
+            <br>
+            <button type="submit">Generate Table</button>
+            <div id="errorMessages" class="error"></div>
+        </form>
+        <div id="tableContainer"></div>
     </div>
 </body>
 </html>

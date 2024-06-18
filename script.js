@@ -5,41 +5,87 @@
  * Description: This script manages form validation using the jQuery Validation plugin and dynamically generates a table based on user input. Console logs are used for debugging purposes.
  */
 
-$(document).ready(function() {
-    console.log("Document is ready, and script is loading...");
-
-    $("#dataForm").validate({
+$(document).ready(function () {
+    $("#multiplicationForm").validate({
         rules: {
-            dataInput: {
+            startHorizontal: {
                 required: true,
-                minlength: 2
+                number: true,
+                range: [-50, 50]
+            },
+            endHorizontal: {
+                required: true,
+                number: true,
+                range: [-50, 50]
+            },
+            startVertical: {
+                required: true,
+                number: true,
+                range: [-50, 50]
+            },
+            endVertical: {
+                required: true,
+                number: true,
+                range: [-50, 50]
             }
         },
         messages: {
-            dataInput: {
-                required: "Please enter some data to generate the table.",
-                minlength: "Your input must be at least 2 characters."
+            startHorizontal: {
+                required: "Please enter a starting horizontal number.",
+                number: "Please enter a valid number.",
+                range: "Please enter a number between -50 and 50."
+            },
+            endHorizontal: {
+                required: "Please enter an ending horizontal number.",
+                number: "Please enter a valid number.",
+                range: "Please enter a number between -50 and 50."
+            },
+            startVertical: {
+                required: "Please enter a starting vertical number.",
+                number: "Please enter a valid number.",
+                range: "Please enter a number between -50 and 50."
+            },
+            endVertical: {
+                required: "Please enter an ending vertical number.",
+                number: "Please enter a valid number.",
+                range: "Please enter a number between -50 and 50."
             }
         },
-        errorPlacement: function(error, element) {
+        errorPlacement: function (error, element) {
             error.insertAfter(element);
-            console.log("Error message placed after input field.");
         },
-        submitHandler: function(form) {
-            console.log("Submit handler triggered.");
-            event.preventDefault();  // This is crucial
-            const inputData = $('#dataInput').val();
-            console.log("Form is valid and being processed. Received valid input: " + inputData);
-            generateTable(inputData);
-            return false; // Prevent form submission
+        submitHandler: function (form) {
+            // Clear any existing error messages
+            $("#errorMessages").empty();
+
+            // Generate the multiplication table
+            generateTable();
         }
     });
 
-    function generateTable(data) {
-        console.log("Generating table with input data...");
-        var html = '<table border="1"><tr><td>Entered Data</td><td>' + data + '</td></tr></table>';
-        console.log("Generated HTML: " + html);
-        $('#dataTable').html(html);
-        console.log("Table generated successfully and added to the page.");
+    function generateTable() {
+        const startHorizontal = parseInt($("#startHorizontal").val());
+        const endHorizontal = parseInt($("#endHorizontal").val());
+        const startVertical = parseInt($("#startVertical").val());
+        const endVertical = parseInt($("#endVertical").val());
+
+        let tableHtml = '<table border="1">';
+        tableHtml += '<tr><th></th>';
+
+        for (let j = startHorizontal; j <= endHorizontal; j++) {
+            tableHtml += `<th>${j}</th>`;
+        }
+        tableHtml += '</tr>';
+
+        for (let i = startVertical; i <= endVertical; i++) {
+            tableHtml += `<tr><th>${i}</th>`;
+            for (let j = startHorizontal; j <= endHorizontal; j++) {
+                tableHtml += `<td>${i * j}</td>`;
+            }
+            tableHtml += '</tr>';
+        }
+
+        tableHtml += '</table>';
+        $("#tableContainer").html(tableHtml);
     }
 });
