@@ -1,12 +1,13 @@
 /**
- * script.js
+ * Multiplication Table Generator
  * Author: Tejindra Khatri
- * Date: June 10, 2024
- * Description: This script manages form validation using the jQuery Validation plugin and dynamically generates a table based on user input. Console logs are used for debugging purposes.
+ * Date: 06/17/2024
  */
 
 $(document).ready(function () {
+    // Validation rules and messages using jQuery Validation Plugin
     $("#multiplicationForm").validate({
+        // Rules for validation
         rules: {
             startHorizontal: {
                 required: true,
@@ -29,6 +30,7 @@ $(document).ready(function () {
                 range: [-50, 50]
             }
         },
+        // Custom error messages
         messages: {
             startHorizontal: {
                 required: "Please enter a starting horizontal number.",
@@ -51,18 +53,18 @@ $(document).ready(function () {
                 range: "Please enter a number between -50 and 50."
             }
         },
+        // Error message placement
         errorPlacement: function (error, element) {
             error.insertAfter(element);
         },
+        // Submit handler
         submitHandler: function (form) {
-            // Clear any existing error messages
             $("#errorMessages").empty();
-
-            // Generate the multiplication table
             generateTable();
         }
     });
 
+    // Function to generate multiplication table
     function generateTable() {
         const startHorizontal = parseInt($("#startHorizontal").val());
         const endHorizontal = parseInt($("#endHorizontal").val());
